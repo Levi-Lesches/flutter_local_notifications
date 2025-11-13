@@ -1,4 +1,3 @@
-import '../msix.dart';
 import '../utils.dart';
 
 /// A text or image element in a Windows notification.
@@ -65,15 +64,6 @@ class WindowsImage extends WindowsNotificationPart {
     this.placement,
     this.crop,
   });
-
-  /// Returns a URI for a [Flutter asset](https://docs.flutter.dev/ui/assets/assets-and-images#loading-images).
-  ///
-  /// - In debug mode, resolves to a file URI to the asset itself
-  /// - In non-MSIX release builds, resolves to a file URI to the bundled asset
-  /// - In MSIX releases, resolves to `ms-appx` URI from [MsixUtils.getAssetUri]
-  @Deprecated('Use WindowsAssetUtils.getAssetUri() instead')
-  static Uri getAssetUri(String assetPath) =>
-      WindowsAssetUtils.getAssetUri(assetPath);
 
   /// Whether Windows should add URL query parameters when fetching the image.
   final bool addQueryParams;
