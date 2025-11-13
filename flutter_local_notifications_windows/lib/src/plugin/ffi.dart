@@ -6,6 +6,7 @@ import '../details.dart';
 import '../details/notification_to_xml.dart';
 import '../ffi/bindings.dart';
 import '../ffi/utils.dart';
+import '../utils.dart';
 
 import 'base.dart';
 
@@ -85,7 +86,9 @@ class FlutterLocalNotificationsWindows extends WindowsNotificationsBase {
             settings.appUserModelId.toNativeUtf8(allocator: arena);
         final Pointer<Utf8> guid = settings.guid.toNativeUtf8(allocator: arena);
         final Pointer<Utf8> iconPath =
-            settings.iconPath?.toNativeUtf8(allocator: arena) ?? nullptr;
+          WindowsAssetUtils.getAssetFile(settings.iconAssetPath)
+            ?.windowsPath.toNativeUtf8(allocator: arena)
+            ?? nullptr;
         final NativeNotificationCallback callback =
             NativeCallable<NativeNotificationCallbackFunction>.listener(
           _globalLaunchCallback,

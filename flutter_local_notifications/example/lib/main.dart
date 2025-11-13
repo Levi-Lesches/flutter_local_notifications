@@ -1121,7 +1121,7 @@ class _HomePageState extends State<HomePage> {
         WindowsAction(
           content: 'Image',
           arguments: 'image',
-          imageUri: WindowsImage.getAssetUri('icons/coworker.png'),
+          imageUri: WindowsAssetUtils.getAssetUri('icons/coworker.png'),
         ),
         const WindowsAction(
           content: 'Context',

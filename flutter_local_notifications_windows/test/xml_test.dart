@@ -5,6 +5,7 @@ const WindowsInitializationSettings settings = WindowsInitializationSettings(
   appName: 'test',
   appUserModelId: 'com.test.test',
   guid: 'a8c22b55-049e-422f-b30f-863694de08c8',
+  iconAssetPath: 'icon.png',
 );
 
 const String emptyXml = '';

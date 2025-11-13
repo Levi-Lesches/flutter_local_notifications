@@ -4,9 +4,11 @@ import 'package:timezone/data/latest_all.dart';
 import 'package:timezone/standalone.dart';
 
 const WindowsInitializationSettings settings = WindowsInitializationSettings(
-    appName: 'Test app',
-    appUserModelId: 'com.test.test',
-    guid: 'a8c22b55-049e-422f-b30f-863694de08c8');
+  appName: 'Test app',
+  appUserModelId: 'com.test.test',
+  guid: 'a8c22b55-049e-422f-b30f-863694de08c8',
+  iconAssetPath: 'icon.png',
+);
 
 void main() => group('Schedules', () {
       final FlutterLocalNotificationsWindows plugin =

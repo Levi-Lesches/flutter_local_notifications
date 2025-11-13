@@ -9,12 +9,14 @@ const WindowsInitializationSettings goodSettings =
   appName: 'test',
   appUserModelId: 'com.test.test',
   guid: 'a8c22b55-049e-422f-b30f-863694de08c8',
+  iconAssetPath: 'icon.png',
 );
 
 const WindowsInitializationSettings badSettings = WindowsInitializationSettings(
   appName: 'test',
   appUserModelId: 'com.test.test',
   guid: '123',
+  iconAssetPath: 'icon.png',
 );
 
 void main() => group('Plugin', () {

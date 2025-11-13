@@ -41,6 +41,7 @@ msix_config:
   store: false
   install_certificate: false
   output_name: example
+  logo_path: icons/app_icon.png
   toast_activator:
     clsid: "d49b0314-ee7a-4626-bf79-97cdb8a991bb"
     arguments: "msix-args"

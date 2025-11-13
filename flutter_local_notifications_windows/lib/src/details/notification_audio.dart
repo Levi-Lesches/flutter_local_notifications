@@ -1,4 +1,4 @@
-import '../../flutter_local_notifications_windows.dart';
+import '../msix.dart';
 
 /// A preset sound for a Windows notification.
 enum WindowsNotificationSound {
