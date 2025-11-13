@@ -1,6 +1,6 @@
 import 'package:xml/xml.dart';
 
-import '../../flutter_local_notifications_windows.dart';
+import '../details.dart';
 import 'xml/details.dart';
 
 export 'xml/progress.dart';

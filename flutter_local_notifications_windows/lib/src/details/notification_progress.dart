@@ -1,5 +1,3 @@
-import '../../flutter_local_notifications_windows.dart';
-
 /// A progress bar in a Windows notification.
 ///
 /// To update the progress after the notification has been shown,

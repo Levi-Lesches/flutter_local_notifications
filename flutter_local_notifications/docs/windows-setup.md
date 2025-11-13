@@ -33,6 +33,14 @@ The [msix package](https://pub.dev/packages/msix) can help generate an MSIX inst
 | Package name | `identity_name`                | `appUserModelId`                |
 | Unique ID    | `toast_activator.clsid`        | `guid`                          |
 
-The display name is set in the MSIX and cannot be changed in Dart. The GUID/CLSID, as the name implies, needs to be _globally unique_. Avoid using IDs from tutorials as other apps on the user's device may be using them as well. Instead, use [online GUID generators](https://guidgenerator.com) to generate a new, unique GUID, and use that for your MSIX and Dart options. 
+The display name is set in the MSIX and cannot be changed in Dart. The GUID/CLSID, as the name implies, needs to be _globally unique_. Avoid using IDs from tutorials as other apps on the user's device may be using them as well. Instead, use [online GUID generators](https://guidgenerator.com) to generate a new, unique GUID, and use that for your MSIX and Dart options.
 
 For a full example, see the `msix_config` section of [the example app's `pubspec.yaml`](https://github.com/MaikuB/flutter_local_notifications/blob/master/flutter_local_notifications/example/pubspec.yaml).
+
+## Custom icons
+
+For MSIX builds, you'll need to specify the `logo_path` variable in your MSIX configuration (see above). For debug and non-MSIX release builds, your icon will need to be a Flutter asset. To show a custom icon for a specific notification, use a [WindowsImage] with [WindowsImagePlacement.appLogoOverride] in your notification details.
+
+> [!Note]
+>
+> For non-MSIX builds, the path to the icon will be set at runtime and won't change until your app is launched again. If, for example, your app is launched, a notification is scheduled, your app is closed, then your app's installation directory changes, the notification will not have an icon.

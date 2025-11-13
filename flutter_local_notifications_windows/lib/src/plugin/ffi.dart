@@ -6,6 +6,7 @@ import '../details.dart';
 import '../details/notification_to_xml.dart';
 import '../ffi/bindings.dart';
 import '../ffi/utils.dart';
+import '../utils.dart';
 
 import 'base.dart';
 
@@ -20,6 +21,17 @@ extension on String {
       this[13] == '-' &&
       this[18] == '-' &&
       this[23] == '-';
+}
+
+extension on WindowsInitializationSettings {
+  String? get iconPath {
+    final String? assetPath = iconAssetPath;
+    if (assetPath == null) {
+      return null;
+    } else {
+      return WindowsAssetUtils.getAssetFile(assetPath)?.windowsPath;
+    }
+  }
 }
 
 /// The Windows implementation of `package:flutter_local_notifications`.

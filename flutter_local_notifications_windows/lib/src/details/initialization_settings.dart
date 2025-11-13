@@ -1,3 +1,5 @@
+import 'notification_parts.dart';
+
 /// Plugin initialization settings for Windows.
 class WindowsInitializationSettings {
   /// Creates a new settings object for initializing this plugin on Windows.
@@ -5,7 +7,7 @@ class WindowsInitializationSettings {
     required this.appName,
     required this.appUserModelId,
     required this.guid,
-    this.iconPath,
+    this.iconAssetPath,
   });
 
   /// The name of the app that should be shown in the notification toast.
@@ -21,6 +23,14 @@ class WindowsInitializationSettings {
   /// The GUID that identifies the notification activation callback.
   final String guid;
 
-  /// The path to the icon of the notification.
-  final String? iconPath;
+  /// The asset path for the default icon.
+  ///
+  /// This icon must be a Flutter asset declared in the Pubspec, and will be
+  /// shown by default. To override it on a specific notification (say, to show
+  /// a user profile picture instead), use a [WindowsImage] with
+  /// [WindowsImagePlacement.appLogoOverride] in your notification details.
+  ///
+  /// Note that for MSIX releases, you must configure the default icon in your
+  /// MSIX configuration. See the Windows Setup Guide for more details.
+  final String? iconAssetPath;
 }

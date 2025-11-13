@@ -1,7 +1,5 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
-import '../../flutter_local_notifications_windows.dart';
+import '../msix.dart';
+import '../utils.dart';
 
 /// A text or image element in a Windows notification.
 ///
@@ -37,15 +35,16 @@ enum WindowsImageCrop {
 /// depending on if your app is packaged as an MSIX. Refer to the following:
 ///
 /// | URI | Debug | Release (EXE) | Release (MSIX) |
-/// |--------|--------|--------|--------|
-/// | `http(s)://` | ❌ | ❌ | ✅ |
-/// | `ms-appx://` | ❌ | ❌ | ✅ |
-/// | `file:///`   | ✅ | ✅ | 🟨 |
+/// |-----------------|-- --|----|-----|
+/// | `http(s)://`    | ❌ | ❌ | ✅ |
+/// | `ms-appx://`    | ❌ | ❌ | ✅ |
+/// | `file:///`      | ✅ | ✅ | 🟨 |
 /// | `getAssetUri()` | ✅ | ✅ | ✅ |
 ///
 /// Each URI type has different uses:
-/// - For Flutter assets, use [getAssetUri], which return the correct file URI
-/// for debug and release (exe) builds, and an `ms-appx` URI in MSIX builds.
+/// - For Flutter assets, use [WindowsAssetUtils.getAssetUri], which return the
+/// correct file URI for debug and release (exe) builds, and an `ms-appx` URI in
+/// MSIX builds.
 /// - For images from the web, use an `https` or `http` URI, but note that
 /// these only work in MSIX apps. If you need a network image without using
 /// MSIX, consider downloading it directly and using a file URI after. Also
@@ -71,19 +70,10 @@ class WindowsImage extends WindowsNotificationPart {
   ///
   /// - In debug mode, resolves to a file URI to the asset itself
   /// - In non-MSIX release builds, resolves to a file URI to the bundled asset
-  /// - In MSIX releases, resolves to an `ms-appx` URI from [Msix.getAssetUri].
-  static Uri getAssetUri(String assetName) {
-    if (kDebugMode) {
-      return Uri.file(File(assetName).absolute.path, windows: true);
-    } else if (MsixUtils.hasPackageIdentity()) {
-      return MsixUtils.getAssetUri(assetName);
-    } else {
-      return Uri.file(
-        File('data/flutter_assets/$assetName').absolute.path,
-        windows: true,
-      );
-    }
-  }
+  /// - In MSIX releases, resolves to `ms-appx` URI from [MsixUtils.getAssetUri]
+  @Deprecated('Use WindowsAssetUtils.getAssetUri() instead')
+  static Uri getAssetUri(String assetPath) =>
+      WindowsAssetUtils.getAssetUri(assetPath);
 
   /// Whether Windows should add URL query parameters when fetching the image.
   final bool addQueryParams;

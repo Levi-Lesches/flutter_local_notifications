@@ -11,6 +11,7 @@ const WindowsInitializationSettings initSettings =
   appName: 'Flutter Local Notifications Example',
   appUserModelId: 'Com.Dexterous.FlutterLocalNotificationsExample',
   guid: 'd49b0314-ee7a-4626-bf79-97cdb8a991bb',
+  iconAssetPath: 'icons/coworker.png',
 );
 
 class _WindowsXmlBuilder extends StatefulWidget {
@@ -240,7 +241,7 @@ Future<void> _showWindowsNotificationWithImages() =>
         windows: WindowsNotificationDetails(
           images: <WindowsImage>[
             WindowsImage(
-              WindowsImage.getAssetUri('icons/4.0x/app_icon_density.png'),
+              WindowsAssetUtils.getAssetUri('icons/4.0x/app_icon_density.png'),
               altText: 'A beautiful image',
             ),
           ],
@@ -260,7 +261,7 @@ Future<void> _showWindowsNotificationWithGroups() =>
             WindowsRow(<WindowsColumn>[
               WindowsColumn(<WindowsNotificationPart>[
                 WindowsImage(
-                  WindowsImage.getAssetUri('icons/coworker.png'),
+                  WindowsAssetUtils.getAssetUri('icons/coworker.png'),
                   altText: 'A local image',
                 ),
                 const WindowsNotificationText(
