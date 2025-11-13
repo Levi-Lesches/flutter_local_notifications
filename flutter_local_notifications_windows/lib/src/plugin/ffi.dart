@@ -23,17 +23,6 @@ extension on String {
       this[23] == '-';
 }
 
-extension on WindowsInitializationSettings {
-  String? get iconPath {
-    final String? assetPath = iconAssetPath;
-    if (assetPath == null) {
-      return null;
-    } else {
-      return WindowsAssetUtils.getAssetFile(assetPath)?.windowsPath;
-    }
-  }
-}
-
 /// The Windows implementation of `package:flutter_local_notifications`.
 class FlutterLocalNotificationsWindows extends WindowsNotificationsBase {
   /// Creates an instance of the native plugin.
@@ -97,7 +86,9 @@ class FlutterLocalNotificationsWindows extends WindowsNotificationsBase {
             settings.appUserModelId.toNativeUtf8(allocator: arena);
         final Pointer<Utf8> guid = settings.guid.toNativeUtf8(allocator: arena);
         final Pointer<Utf8> iconPath =
-            settings.iconPath?.toNativeUtf8(allocator: arena) ?? nullptr;
+          WindowsAssetUtils.getAssetFile(settings.iconAssetPath)
+            ?.windowsPath.toNativeUtf8(allocator: arena)
+            ?? nullptr;
         final NativeNotificationCallback callback =
             NativeCallable<NativeNotificationCallbackFunction>.listener(
           _globalLaunchCallback,
