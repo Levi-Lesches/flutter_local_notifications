@@ -7,7 +7,7 @@ class WindowsInitializationSettings {
     required this.appName,
     required this.appUserModelId,
     required this.guid,
-    this.iconAssetPath,
+    required this.iconAssetPath,
   });
 
   /// The name of the app that should be shown in the notification toast.
@@ -32,5 +32,5 @@ class WindowsInitializationSettings {
   ///
   /// Note that for MSIX releases, you must configure the default icon in your
   /// MSIX configuration. See the Windows Setup Guide for more details.
-  final String? iconAssetPath;
+  final String iconAssetPath;
 }
